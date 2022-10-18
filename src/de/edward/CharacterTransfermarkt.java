@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class Transfermarkt2 extends JFrame{
+public class CharacterTransfermarkt extends JFrame{
 
     private List<Player> my_list = new List<Player>();
     private List<Character> my_second_list = new List<Character>();
@@ -29,7 +29,7 @@ public class Transfermarkt2 extends JFrame{
     private JButton JB_clear;
     private JButton JB_save;
 
-    Transfermarkt2(){
+    CharacterTransfermarkt(){
 
         // set up the text fields
         JTF_name = new JTextField("name");
