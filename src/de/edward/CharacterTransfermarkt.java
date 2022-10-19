@@ -17,12 +17,12 @@ import java.io.RandomAccessFile;
 
 public class CharacterTransfermarkt extends JFrame{
 
-    private List<Player> my_list = new List<Player>();
-    private List<Character> my_second_list = new List<Character>();
+    private List<Character> my_list = new List<Character>();
     private RandomAccessFile database;
     private JTextField JTF_name;
-    private JTextField JTF_value;
-    private JTextField JTF_team;
+    private JTextField JTF_clas;
+    private JTextField JTF_subclas;
+    private JTextField JTF_hlth;
     private JTextArea JTA_output;
     private JButton JB_append;
     private JButton JB_print;
@@ -33,8 +33,9 @@ public class CharacterTransfermarkt extends JFrame{
 
         // set up the text fields
         JTF_name = new JTextField("name");
-        JTF_value = new JTextField("value");
-        JTF_team = new JTextField("team");
+        JTF_clas = new JTextField("class");
+        JTF_subclas = new JTextField("subclass");
+        JTF_hlth = new JTextField("health");
 
         // set up the output field
         // The JTextArea needs a surrounding JScrollPane for scrolling.
@@ -54,8 +55,9 @@ public class CharacterTransfermarkt extends JFrame{
         JB_clear.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 JTF_name.setText("name");
-                JTF_value.setText("value");
-                JTF_team.setText("team");
+                JTF_clas.setText("class");
+                JTF_subclas.setText("subclass");
+                JTF_hlth.setText("health");
                 JTA_output.setText("");
             }
         });
@@ -63,19 +65,21 @@ public class CharacterTransfermarkt extends JFrame{
         JB_append.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 String name = JTF_name.getText();
-                double value = -1.;
+                String clas = JTF_clas.getText();
+                String subclass = JTF_subclas.getText();
+                int value = -1;
                 try{
-                    value = Double.valueOf( JTF_value.getText() );
+                    value = Integer.valueOf( JTF_hlth.getText() );
                 }catch( NumberFormatException nf ){
-                    JTA_output.setText("I cannot read the player's value.");
+                    JTA_output.setText("I cannot read the character's value.");
                 }
-                String team = JTF_team.getText();
                 if( value>=0 ){
-                    Player player = new Player( name, value, team );
-                    my_list.append( player );
+                    Character character = new Character( name, clas ,subclass, value );
+                    my_list.append( character );
                     JTF_name.setText("name");
-                    JTF_value.setText("value");
-                    JTF_team.setText("team");
+                    JTF_clas.setText("class");
+                    JTF_subclas.setText("subclass");
+                    JTF_hlth.setText("health");
                 }
             }
         });
@@ -101,16 +105,17 @@ public class CharacterTransfermarkt extends JFrame{
         JP_buttons.add( JB_save );
 
         // add the buttons and the text fields to the JFrame
-        setLayout( new GridLayout(5,1) );
+        setLayout( new GridLayout(6,1) );
         add( JTF_name );
-        add( JTF_value );
-        add( JTF_team );
+        add(JTF_clas);
+        add(JTF_subclas);
+        add(JTF_hlth);
         add( JSP_scroll );
         add( JP_buttons );
 
         // open the input file for reading and writing
         try{
-            database = new RandomAccessFile("Spielerdaten.dat","rw");
+            database = new RandomAccessFile("Characterdata.dat","rw");
         }catch( FileNotFoundException fnf ){
             System.out.println("\n File not found.\n\n");
             JTA_output.setText("I cannot find the input file.");
@@ -120,24 +125,26 @@ public class CharacterTransfermarkt extends JFrame{
         boolean eof = false;    // Are we at the end of the file?
         while( !eof ){
             String name="";
-            double value = -1.;
-            String team="";
+            String clas="";
+            String subclas="";
+            int value = -1;
             try{
                 name = database.readLine();
+                clas = database.readLine();
+                subclas = database.readLine();
                 String s = database.readLine();
                 if( s!=null ){
-                    value = Double.valueOf(s);
+                    value = Integer.valueOf(s);
                 }
-                team = database.readLine();
                 database.readLine();
             }catch( IOException io ){
                 System.out.println("\n\n Error reading the data file.\n\n");
                 JTA_output.setText("Error reading the data file.");
             }
-            if( name==null || value==-1. || team==null ){
+            if( name==null || value==-1 || clas==null || subclas==null){
                 eof = true; // We have reached the end of the file.
             }else{
-                Player p = new Player( name, value, team );
+                Character p = new Character( name, clas ,subclas, value );
                 my_list.append( p );
             }
         }
@@ -145,10 +152,10 @@ public class CharacterTransfermarkt extends JFrame{
     } // end of constructor
 
     public static void main(String [] args){
-        Transfermarkt2 t = new Transfermarkt2();
+        CharacterTransfermarkt t = new CharacterTransfermarkt();
         t.setSize(600,600);
         t.setResizable(false);
-        t.setTitle("Transfermarkt2");
+        t.setTitle("CharacterTransfermarkt");
         t.setVisible(true);
         System.out.println("\n\n ======= Transfermarkt2 =======\n");
         System.out.println("\n\n ======= This code has been partially provided by TheBoringEdward =======\n");

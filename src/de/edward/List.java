@@ -34,7 +34,7 @@ public class List<T> {
     }
 
     //Sets next Player of current Player
-    public void append(Player p){
+    public void append(T p){
         Node n = get_tail();
         Node n2 = new Node(p);
         n.setNext(n2);
