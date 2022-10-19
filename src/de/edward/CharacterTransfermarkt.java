@@ -157,7 +157,7 @@ public class CharacterTransfermarkt extends JFrame{
         t.setResizable(false);
         t.setTitle("CharacterTransfermarkt");
         t.setVisible(true);
-        System.out.println("\n\n ======= Transfermarkt2 =======\n");
+        System.out.println("\n\n ======= CharacterTransfermarkt =======\n");
         System.out.println("\n\n ======= This code has been partially provided by TheBoringEdward =======\n");
     }
 
