@@ -18,7 +18,6 @@ import java.io.RandomAccessFile;
 public class Transfermarkt2 extends JFrame{
 
     private List<Player> my_list = new List<Player>();
-    private List<Character> my_second_list = new List<Character>();
     private RandomAccessFile database;
     private JTextField JTF_name;
     private JTextField JTF_value;
@@ -151,7 +150,7 @@ public class Transfermarkt2 extends JFrame{
         t.setTitle("Transfermarkt2");
         t.setVisible(true);
         System.out.println("\n\n ======= Transfermarkt2 =======\n");
-        System.out.println("\n\n ======= This code has been partially provided by TheBoringEdward =======\n");
+        System.out.println("\n\n ======= This code has been modified by TheBoringEdward =======\n");
     }
 
 }

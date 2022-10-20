@@ -2,8 +2,8 @@ package de.edward;
 
 public class List<T> {
 
-    private Node head;
-    private Node tail;
+    private Node head; // What are all of these warning "Raw use of parameterized class 'Node'" about?
+    private final Node tail;
 
     List(){
         head = new Node();
@@ -19,7 +19,7 @@ public class List<T> {
     }
 
     //Returns last Node
-    public Node get_tail(){
+    public Node getTail(){
         Node n = head;
         while( n.getNext() != null ) {
             n = n.getNext();
@@ -29,13 +29,13 @@ public class List<T> {
 
     //Returns last Player
     public T get_last(){
-        Node<T> n = get_tail();
+        Node<T> n = getTail();
         return n.getContent();
     }
 
     //Sets next Player of current Player
     public void append(T p){
-        Node n = get_tail();
+        Node n = getTail();
         Node n2 = new Node(p);
         n.setNext(n2);
         tail.setPrev(n2);
