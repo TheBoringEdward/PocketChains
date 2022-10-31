@@ -9,7 +9,7 @@ public class List<T> {
         head = new Node();
         tail = new Node();
         head.setNext(tail);
-        tail.setPrev(head); //Always points to the head...
+        tail.setPrev(head);
     }
 
     //Returns first Player
@@ -35,11 +35,13 @@ public class List<T> {
 
     //Sets next Player of current Player
     public void append(T p){
-        Node n = getTail();
+        Node n = tail.getPrev();
         Node n2 = new Node(p);
+        n2.setPrev(n);
+        n2.setNext(tail);
         n.setNext(n2);
         tail.setPrev(n2);
-        System.out.println("Player has been appended:  " + get_last());
+        System.out.println("Player has been appended:  " + get_last() + "\n");
     }
 
     //Prints out the entire List of Nodes/Players

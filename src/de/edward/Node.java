@@ -50,7 +50,11 @@ public class Node<T> {
 
     //Prints Player Content
     public void print(){
-        System.out.println(content.toString());
+        if( content != null){
+            System.out.println(content.toString());
+        } else {
+            System.out.println("\n null");
+        }
     }
 
     //Builds String from Player Content

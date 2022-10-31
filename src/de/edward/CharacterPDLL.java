@@ -106,6 +106,7 @@ public class CharacterPDLL extends JFrame{
         JB_save = new JButton("save");
         JB_save.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                my_list.print();
                 try{
                     // delete all content
                     database.setLength(0);
@@ -165,7 +166,8 @@ public class CharacterPDLL extends JFrame{
                 eof = true; // We have reached the end of the file.
             }else{
                 Character p = new Character( name, clas ,subclas, value );
-                my_list.append( p );
+                p.print();
+                my_list.append( p );  //TODO: Node shall not print "null".
             }
         }
 
