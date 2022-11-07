@@ -33,6 +33,13 @@ public class List<T> {
         return n.getContent();
     }
 
+    private void exchange(Node<T> m, Node<T> n){
+        Node<T> n2 = new Node<T>();
+        n2.setContent(n.getContent()); // I haven't done this in ages...
+        n.setContent(m.getContent());
+        m.setContent(n2.getContent());
+    }
+
     //Sets next Player of current Player
     public void append(T p){
         Node n = tail.getPrev();
@@ -41,7 +48,7 @@ public class List<T> {
         n2.setNext(tail);
         n.setNext(n2);
         tail.setPrev(n2);
-        System.out.println("Player has been appended:  " + get_last() + "\n");
+        System.out.println("This object has been appended:  " + get_last() + "\n");
     }
 
     //Prints out the entire List of Nodes/Players
