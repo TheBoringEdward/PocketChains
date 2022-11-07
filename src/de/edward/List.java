@@ -1,5 +1,7 @@
 package de.edward;
 
+import java.util.Comparator;
+
 public class List<T> {
 
     private Node head; // What are all of these warning "Raw use of parameterized class 'Node'" about?
@@ -35,9 +37,24 @@ public class List<T> {
 
     private void exchange(Node<T> m, Node<T> n){
         Node<T> n2 = new Node<T>();
-        n2.setContent(n.getContent()); // I haven't done this in ages...
+        n2.setContent(n.getContent());
         n.setContent(m.getContent());
         m.setContent(n2.getContent());
+    }
+
+    public void sort(Comparator comp){
+        // bubble sort
+        Node<T> m = new Node<T>();
+        Node<T> n = new Node<T>();
+        m.setContent(get_first());
+        n.setPrev(m);
+        m.setNext(n);
+        if(m.getNext() != null){
+            if(n.getNext() != null){
+                 // How the fuck am I supposed to do this?
+
+            }
+        }
     }
 
     //Sets next Player of current Player
