@@ -49,10 +49,16 @@ public class List<T> {
         m.setContent(get_first());
         n.setPrev(m);
         m.setNext(n);
-        if(m.getNext() != null){
-            if(n.getNext() != null){
-                 // How the fuck am I supposed to do this?
 
+        while(m.getNext() != null){
+            while(n.getNext() != null){
+                T p = n.getContent();
+                T q = m.getContent();
+                if (comp.compare(p,q) <0 ){
+                    exchange(m,n);
+                }
+                n = n.getNext();
+                m = m.getNext();
             }
         }
     }
@@ -69,7 +75,6 @@ public class List<T> {
     }
 
     //Prints out the entire List of Nodes/Players
-
     public void print(){
         Node n = head;
         while(n.getNext() != null){

@@ -28,6 +28,7 @@ public class CharacterPDLL extends JFrame{
     private final JTextField JTF_hlth;
     private final JTextArea JTA_output;
     private JButton JB_append;
+    private JButton JB_sort; //TODO: Finish!!!
     private JButton JB_print;
     private JButton JB_clear;
     private JButton JB_save;
