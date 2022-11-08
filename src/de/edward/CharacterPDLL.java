@@ -17,15 +17,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.awt.Color;
+import java.util.Comparator;
 
 public class CharacterPDLL extends JFrame{
 
     private final List<Character> my_list = new List<Character>();
     private RandomAccessFile database;
     private final JTextField JTF_name;
+    String jname = "Name";
     private final JTextField JTF_clas;
+    String jclas = "Class";
     private final JTextField JTF_subclas;
+    String jsubclas = "Subclass";
     private final JTextField JTF_hlth;
+    String jhlth = "Health";
     private final JTextArea JTA_output;
     private JButton JB_append;
     private JButton JB_sort; //TODO: Finish!!!
@@ -38,19 +43,19 @@ public class CharacterPDLL extends JFrame{
         setBackground(Color.black); // It flashes black for a second and then just decides to flashbang me.
                                     // The mentions about 'setOpaque' are useless, 'cause it doesn't even exist for some bloody reason.
         // set up the text fields
-        JTF_name = new JTextField("Name");
+        JTF_name = new JTextField(jname);
         JTF_name.setBackground(Color.decode("#2d3842"));
         JTF_name.setForeground(Color.decode("#95aec6"));
         JTF_name.setOpaque(true);
-        JTF_clas = new JTextField("Class");
+        JTF_clas = new JTextField(jclas);
         JTF_clas.setBackground(Color.decode("#2d3842"));
         JTF_clas.setForeground(Color.decode("#95aec6"));
         JTF_clas.setOpaque(true);
-        JTF_subclas = new JTextField("Subclass");
+        JTF_subclas = new JTextField(jsubclas);
         JTF_subclas.setBackground(Color.decode("#2d3842"));
         JTF_subclas.setForeground(Color.decode("#95aec6"));
         JTF_subclas.setOpaque(true);
-        JTF_hlth = new JTextField("Health");
+        JTF_hlth = new JTextField(jhlth);
         JTF_hlth.setBackground(Color.decode("#2d3842"));
         JTF_hlth.setForeground(Color.decode("#95aec6")); // TODO: There HAS to be a better way of doing this.
         JTF_hlth.setOpaque(true);
@@ -75,13 +80,22 @@ public class CharacterPDLL extends JFrame{
         JB_clear = new JButton("clear");
         JB_clear.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                JTF_name.setText("Name");
-                JTF_clas.setText("Class");
-                JTF_subclas.setText("Subclass");
-                JTF_hlth.setText("Health");
+                JTF_name.setText(jname);
+                JTF_clas.setText(jclas);
+                JTF_subclas.setText(jsubclas);
+                JTF_hlth.setText(jhlth);
                 JTA_output.setText("");
             }
         });
+        
+        JB_sort = new JButton("sort");
+        JB_sort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                my_list.sort();
+            }
+        });
+        
         JB_append = new JButton("append");
         JB_append.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -97,10 +111,10 @@ public class CharacterPDLL extends JFrame{
                 if( value>=0 ){
                     Character character = new Character( name, clas ,subclass, value );
                     my_list.append( character );
-                    JTF_name.setText("Name");
-                    JTF_clas.setText("Class");
-                    JTF_subclas.setText("Subclass");
-                    JTF_hlth.setText("Health");
+                    JTF_name.setText(jname);
+                    JTF_clas.setText(jclas);
+                    JTF_subclas.setText(jsubclas);
+                    JTF_hlth.setText(jhlth);
                 }
             }
         });
