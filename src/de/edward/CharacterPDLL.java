@@ -92,7 +92,7 @@ public class CharacterPDLL extends JFrame{
         JB_sort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                my_list.sort();
+                my_list.sort( new Comp_hlth() );
             }
         });
         
@@ -136,6 +136,7 @@ public class CharacterPDLL extends JFrame{
         // All buttons are grouped in one JPanel.
         JPanel JP_buttons = new JPanel( new FlowLayout() );
         JP_buttons.add( JB_append );
+        JP_buttons.add( JB_sort );
         JP_buttons.add( JB_print );
         JP_buttons.add( JB_clear );
         JP_buttons.add( JB_save );

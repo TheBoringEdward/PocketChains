@@ -44,22 +44,20 @@ public class List<T> {
 
     public void sort(Comparator comp){
         // bubble sort
-        Node<T> m = new Node<T>();
-        Node<T> n = new Node<T>();
-        m.setContent(get_first());
-        n.setPrev(m);
-        m.setNext(n);
+        Node<T> m = head.getNext();
+        Node<T> n = m.getNext();
 
-        while(m.getNext() != null){
-            while(n.getNext() != null){
-                T p = n.getContent();
-                T q = m.getContent();
+        while(m.getNext() != tail){
+            while(n != tail){
+                T p = m.getContent();
+                T q = n.getContent();
                 if (comp.compare(p,q) <0 ){
                     exchange(m,n);
                 }
                 n = n.getNext();
-                m = m.getNext();
             }
+            m = m.getNext();
+            n = m.getNext();
         }
     }
 
